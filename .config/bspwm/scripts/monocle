@@ -1,0 +1,6 @@
+#! /bin/sh
+
+bspc query -D | xargs -I {} bspc desktop {} -l monocle
+while read -r _ _ d _; do
+    bspc desktop "$d" -l monocle
+done < <(bspc subscribe desktop_add)

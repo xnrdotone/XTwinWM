@@ -1,0 +1,8 @@
+#!/bin/bash
+
+current_window_id=$(bspc query -N -n focused.automatic)
+current_window_class=$(xprop -id $current_window_id | awk -F'"' '/WM_CLASS/{print $4}')
+
+if [ "$current_window_class" != "Alacritty" ]; then
+    bspc node $current_window_id -k
+fi
